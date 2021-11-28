@@ -1,0 +1,66 @@
+-- consulta 1
+select *
+from funcionarios
+where salario > 1500 and data_admissao > '2005-01-01'
+
+
+-- consulta 2
+select nome, data_admissao
+from funcionarios
+where datediff(current_date(), data_admissao) >= (5 * 365)
+
+
+-- consulta 3
+select *
+from salas
+where capacidade > 250
+
+
+-- consulta 4
+select *
+from filmes
+where tipo = 'Drama' OR tipo = 'Aventura'
+
+
+-- consulta 5
+select f.*, faux.nome_portugues, faux.ano_lancamento
+from filmes f
+	join nome_portugues_ano_lancamento_filmes faux
+		on f.id = faux.filme_id
+where faux.ano_lancamento = 2018 and f.diretor = 'Joe Russo'
+
+
+-- consulta 6
+select distinct f.nome_original, faux.nome_portugues, f.tipo
+from filmes f
+	join nome_portugues_ano_lancamento_filmes faux
+		on f.id = faux.filme_id
+	join indicacoes i
+		on f.id = i.filme_id
+where i.premiado is true
+
+
+-- consulta 7
+select diretor, count(*) as qtd_filmes_diretor
+from filmes
+group by diretor
+
+
+-- consulta 8
+select avg(salario) as media_salarial
+from funcionarios
+
+
+-- consulta 9
+select max(salario) as maior_salario, min(salario) as menor_salario
+from funcionarios
+
+
+-- insercao 1
+insert into sessoes (filme_id, horario, numero_sala)
+values (FILME_ID, 'HORARIO', NUMERO_SALA)
+
+
+-- insercao 2
+insert into funcionarios (carteira_trabalho, nome, salario, data_admissao)
+values ('CARTEIRA_TRABALHO', 'NOME', SALARIO, current_date())
