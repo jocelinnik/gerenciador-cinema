@@ -19,7 +19,7 @@ class ConectorMySQL:
     def executar(self, comando_sql):
         cursor = self.__conn.cursor()
 
-        return cursor.execute(comando_sql)
+        cursor.execute(comando_sql)
 
     def executar_insercao(self, sql, valores):
         cursor = self.__conn.cursor()
